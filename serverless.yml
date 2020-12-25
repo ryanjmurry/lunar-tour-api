@@ -19,7 +19,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   region: us-east-1
-  stage: ${opt:stage, self:provider.stage}
+  stage: dev
   TableDB: ${self:custom.stage}-tableDB
   tableThroughputs:
     prod: 1
@@ -48,7 +48,7 @@ provider:
       # Restrict our IAM role permissions to
       # the specific table for the stage
       Resource:
-        - "Fn::GetAtt": [TableDB, Arn]
+        - 'Fn::GetAtt': [TableDB, Arn]
     # - Effect: "Allow"
     #   Action:
     #     - "sqs:GetQueueUrl"
